@@ -1,12 +1,7 @@
 const routes = require('express').Router();
-const multer = require('multer');
-const multerConfig = require('../config/multer');
+const multerMid = require('../middlewares/multerMid');
+const PostController = require('../controllers/PostController');
 
-routes.post('/',
-  multer(multerConfig).single('file'),
-  (req, res) => {
-    console.log(req.file);
-    return res.json('Hello, World!');
-  });
+routes.post('/', multerMid, PostController.post);
 
 module.exports = routes;
