@@ -4,6 +4,7 @@ const PostController = require('../controllers/PostController');
 
 routes
   .post('/', multerMid, PostController.upload)
-  .get('/', PostController.getAll);
+  .get('/', PostController.getAll)
+  .delete('/:id', PostController.deleteById);
 
 module.exports = routes;
