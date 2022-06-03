@@ -1,13 +1,20 @@
 const PostModel = require('../models/PostModel');
 
-const post = async (req, res) => {
-  const { originalname: name, size, filename: key } = req.file;
+const upload = async (req, res) => {
+  const { originalname: name, size, key, location: url = '' } = req.file;
 
-  const post = await PostModel.create({ name, size, key, url: '' });
+  const post = await PostModel.create({ name, size, key, url });
 
   return res.json(post);
 };
 
+const getAll = async (req, res) => {
+  const posts = await PostModel.find();
+
+  return res.json(posts);
+};
+
 module.exports = {
-  post,
+  upload,
+  getAll,
 };
