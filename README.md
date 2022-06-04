@@ -1,6 +1,6 @@
 # Enline Project
 
-Enline is a MERN (MongoDB, Express, React and Node) app for uploading images.
+Enline Project is a MERN (MongoDB, Express, React and Node) app for uploading images.
 
 ## Tools
 
