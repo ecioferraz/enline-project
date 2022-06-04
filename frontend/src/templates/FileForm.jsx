@@ -3,13 +3,17 @@ import Button from '../components/Button';
 import FileInput from '../components/FileInput';
 import TextCard from '../components/TextCard';
 import UploadContext from '../context/UploadContext';
+import { postRequest } from '../services/APIRequests';
 
 export default function FileForm() {
-  const { selectedFile } = useContext(UploadContext);
+  const { selectedFile, setSelectedFile } = useContext(UploadContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(selectedFile);
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    postRequest('/', formData);
+    setSelectedFile('');
   };
 
   return (
@@ -24,6 +28,7 @@ export default function FileForm() {
         className="submit-btn"
         type="submit"
         handleClick={ (e) => handleSubmit(e) }
+        disabled={!selectedFile}
       />
     </form>
   );
