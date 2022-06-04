@@ -1,19 +1,25 @@
-import React, { useContext } from 'react';
-import Button from '../components/Button';
-import FileInput from '../components/FileInput';
-import TextCard from '../components/TextCard';
+import React, { useContext, useState } from 'react';
+import { TextCard, FileInput, Button } from '../components';
 import UploadContext from '../context/UploadContext';
 import { postRequest } from '../services/APIRequests';
 
+
 export default function FileForm() {
+  const [buttonName, setButtonName] = useState('Enviar');
   const { selectedFile, setSelectedFile } = useContext(UploadContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setButtonName('Enviando...');
+    setSelectedFile('');
+
     const formData = new FormData();
     formData.append('file', selectedFile);
-    postRequest('/', formData);
-    setSelectedFile('');
+    await postRequest('/', formData);
+    
+    e.target.value = '';
+    setButtonName('Enviar');
   };
 
   return (
@@ -24,7 +30,7 @@ export default function FileForm() {
       />
       <FileInput />
       <Button
-        name="Enviar"
+        name={ buttonName }
         className="submit-btn"
         type="submit"
         handleClick={ (e) => handleSubmit(e) }
