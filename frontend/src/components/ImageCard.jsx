@@ -7,6 +7,7 @@ export default function ImageCard({ src, title }) {
       src={ src }
       alt={ `Imagem de nome: ${title}` }
       className="uploaded-img"
+      width="50"
     />
   );
 }
