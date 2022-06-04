@@ -6,7 +6,7 @@ export default function Button(
 ) {
   return (
     <button
-      type={ type === 'button' ? 'button' : 'submit' }
+      type={ type }
       name={ name }
       onClick={ handleClick }
       className={ className }
@@ -22,9 +22,10 @@ Button.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
   disabled: false,
+  type: 'button'
 };
