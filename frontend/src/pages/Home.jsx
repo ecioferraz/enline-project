@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { getRequest } from '../services/APIRequests';
+import React, { useContext } from 'react';
+import UploadContext from '../context/UploadContext';
 import FileForm from '../templates/FileForm';
 import UploadCard from '../templates/UploadCard';
 
 export default function Home() {
-  const [uploads, setUploads] = useState([]);
-
-  useEffect(() => {
-    const getUploads = async () => {
-      const { data } = await getRequest('/');
-      setUploads(data);
-    };
-
-    getUploads();
-  }, []);
+  const { uploads } = useContext(UploadContext);
 
   return (
     <main>
@@ -23,6 +14,7 @@ export default function Home() {
           uploads.map(({ _id: id, name, size, url }) => (
             <UploadCard
               key={ id }
+              id={ id }
               name={ name }
               size={ size }
               url={ url }
