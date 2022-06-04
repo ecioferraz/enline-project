@@ -12,7 +12,10 @@ const postRequest = async (endpoint, body) => api.post(endpoint, body);
 
 const getRequest = async (endpoint) => api.get(endpoint);
 
+const deleteRequest = async (endpoint) => api.delete(endpoint);
+
 export {
   postRequest,
   getRequest,
+  deleteRequest,
 };
