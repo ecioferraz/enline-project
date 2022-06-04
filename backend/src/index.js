@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const routes = require('./router/Router');
+const router = require('./router/Router');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -18,6 +18,6 @@ app.use(morgan('dev'));
 app.use('/files', express.static(
   path.resolve(__dirname, '..', 'tmp', 'uploads')));
 
-app.use(routes);
+app.use(router);
 
 app.listen(3001);
