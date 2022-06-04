@@ -3,6 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import Button from '../components/Button';
 import FileInput from '../components/FileInput';
+import ImageCard from '../components/ImageCard';
 import TextCard from '../components/TextCard';
 import { renderWithContext } from './mocks/mockRender';
 
@@ -130,6 +131,35 @@ describe('Components', () => {
       const paragraph = textCard.children[0];
       expect(paragraph.textContent).toBe('test');
       expect(paragraph.className).toBe('test');
+    });
+  });
+
+  describe('<ImageCard />', () => {
+    let imageCard;
+
+    beforeEach(() => {
+      act(() => {
+        render(
+          <ImageCard
+            src="test"
+            title="test"
+          />,
+          container,
+        );
+      });
+
+      imageCard = container.querySelector('img');
+    });
+
+    afterEach(() => imageCard = null);
+
+    it('should render an img', () => {
+      expect(imageCard).toBeTruthy();
+    });
+
+    it('should render img\'s properties correctly', () => {
+      expect(imageCard.getAttribute('src')).toBe('test');
+      expect(imageCard.getAttribute('alt')).toBeDefined();
     });
   });
 });
