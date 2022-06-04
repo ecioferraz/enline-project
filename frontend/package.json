@@ -17,9 +17,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd ../backend && npm start\"",
+    "start": "concurrently \"npm i && react-scripts start\" \"cd ../backend && npm i && npm start\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "test:coverage": "react-scripts test --coverage --watchAll=false"
   },
