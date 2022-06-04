@@ -6,7 +6,12 @@ import { postRequest } from '../services/APIRequests';
 
 export default function FileForm() {
   const [buttonName, setButtonName] = useState('Enviar');
-  const { selectedFile, setSelectedFile } = useContext(UploadContext);
+  const {
+    selectedFile,
+    setSelectedFile,
+    uploads,
+    setUploads,
+  } = useContext(UploadContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +21,9 @@ export default function FileForm() {
 
     const formData = new FormData();
     formData.append('file', selectedFile);
-    await postRequest('/', formData);
-    
-    e.target.value = '';
+    const { data } = await postRequest('/', formData);
+    setUploads([...uploads, data]);
+
     setButtonName('Enviar');
   };
 
