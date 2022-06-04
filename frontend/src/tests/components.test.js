@@ -1,10 +1,7 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Button from '../components/Button';
-import FileInput from '../components/FileInput';
-import ImageCard from '../components/ImageCard';
-import TextCard from '../components/TextCard';
+import { Button, FileInput, ImageCard, TextCard } from '../components';
 import { renderWithContext } from './mocks/mockRender';
 
 
