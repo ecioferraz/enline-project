@@ -6,6 +6,7 @@ export default function FileInput() {
 
   return (
     <input
+      accept="image/*"
       type="file"
       onChange={ ({ target: { files } }) => setSelectedFile(files[0]) }
     />
