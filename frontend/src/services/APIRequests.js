@@ -8,4 +8,11 @@ const baseURL = `http://${
 
 const api = axios.create({ baseURL });
 
-export const postRequest = async (endpoint, body) => api.post(endpoint, body);
+const postRequest = async (endpoint, body) => api.post(endpoint, body);
+
+const getRequest = async (endpoint) => api.get(endpoint);
+
+export default {
+  postRequest,
+  getRequest,
+};
