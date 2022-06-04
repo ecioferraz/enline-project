@@ -3,6 +3,9 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import Button from '../components/Button';
 import FileInput from '../components/FileInput';
+import TextCard from '../components/TextCard';
+import { renderWithContext } from './mocks/mockRender';
+
 
 describe('Components', () => {
   let container = null;
@@ -77,11 +80,9 @@ describe('Components', () => {
   describe('<FileInput />', () => {
     let input;
 
-    const onChange = jest.fn();
-
     beforeEach(async () => {
       act(() => {
-        render(
+        renderWithContext(
           <FileInput />,
           container,
         );
@@ -99,11 +100,36 @@ describe('Components', () => {
     it('should render file input\'s properties correctly', () => {
       expect(input.getAttribute('type')).toBe('file');
     });
+  });
 
-    // it('should render a clickable file input', () => {
-    //   act(() => input.change());
+  describe('<TextCard />', () => {
+    let textCard;
 
-    //   expect(onChange).not.toHaveBeenCalled();
-    // });
+    beforeEach(() => {
+      act(() => {
+        render(
+          <TextCard
+            className="test"
+            text="test"
+          />,
+          container,
+        );
+      });
+
+      textCard = container.querySelector('div');
+    });
+
+    afterEach(() => textCard = null);
+
+    it('should render a div', () => {
+      expect(textCard).toBeTruthy();
+    });
+
+    it('should render a paragraph element inside of the div', () => {
+      expect(textCard.children[0].tagName).toBe('P');
+      const paragraph = textCard.children[0];
+      expect(paragraph.textContent).toBe('test');
+      expect(paragraph.className).toBe('test');
+    });
   });
 });
