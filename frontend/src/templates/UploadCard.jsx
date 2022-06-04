@@ -17,7 +17,7 @@ export default function UploadCard({ id, url, name, size }) {
   };
 
   return (
-    <div>
+    <div className="upload-card">
       <ImageCard
         src={ url }
         title={ name }
